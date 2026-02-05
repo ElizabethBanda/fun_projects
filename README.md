@@ -1,9 +1,28 @@
-# code to generate an html poster of three plots
+### This project creates an interactive poster that visualizes data from The Loop, George Washington University’s free clothing exchange.
 
-library(plotly)
-library(ggplot2)
-library(htmltools)
-library(htmlwidgets)
+The poster combines interactive charts, static plots, and summary tables to explore three key questions:
+Who uses The Loop, when do they visit, and what do they exchange?
+
+Below are the required packages. Make sure the following R packages are installed before running the code.
+library(plotly)       # For interactive charts
+library(ggplot2)      # For data visualization
+library(htmltools)    # For HTML structure and layout
+library(htmlwidgets)  # For embedding interactive plots
+
+## Overview 
+After generating your plots and static image the following code will assemble them into a three-column HTML poster layout.
+
+Each column highlights a different dimension of The Loop’s data:
+- Visitor Demographics: A Plotly bar chart showing visit patterns across campus groups.
+- Clothing Flow: A Circos diagram visualizing clothing exchange patterns between item types.
+- Visit Timing + Summary Table: A bubble chart for peak visit hours and a “Year in Review” summary.
+
+## Notes on Design
+- Uses accessible fonts (Arial and Arial Black) and high-contrast color palette (navy, gold, and white).
+- Includes alt text–like descriptions for accessibility.
+- Layout built with htmltools::tagList() for flexibility and modularity.
+
+## The poster’s sections mirror a typical scientific visualization used in genomics and sustainability dashboards.
 
 poster_layout <- browsable(
   tagList(
@@ -11,15 +30,12 @@ poster_layout <- browsable(
     tags$div(
       style = "background-color:#1E2A5E; color:white; text-align:center;
                padding:60px 20px; border-bottom:4px solid #FFD700;",
-      
       tags$h1("Exploring Sustainability through The Loop Clothing Exchange",
               style="font-family:'Arial Black',Arial; font-size:3.5rem; margin:0;"),
-      
       tags$p(
         "The Loop is GW’s free clothing exchange store on the Mount Vernon Campus. 
-        All the inventory is sourced from clothing donations from GW community members. 
-        Each year, the Office of Sustainability receives more than 25,000 pounds’ worth 
-        of clothing donations — promoting reuse and reducing textile waste.",
+        All inventory comes from clothing donations by GW community members, promoting reuse 
+        and reducing textile waste. Each year, over 25,000 pounds of clothing are collected.",
         style="font-family:Arial; font-size:1.6rem; line-height:2; max-width:1000px; margin:25px auto 0 auto;"
       )
     ),
@@ -38,7 +54,7 @@ poster_layout <- browsable(
         tags$div(style="height:900px; width:100%;", p_monthly_interactive),
         tags$p(
           "This visualization illustrates the share of visits contributed by each campus demographic group throughout 2025. 
-           Hover over each bar to see the exact number of visits for that demographic and month.",
+           Hover over each bar to see the number of visits for that demographic and month.",
           style="font-size:2rem; color:#2C3E50; line-height:1.8; margin-top:5px;"
         )
       ),
@@ -55,56 +71,50 @@ poster_layout <- browsable(
                  border-radius:10px; box-shadow:0 4px 8px rgba(0,0,0,0.1);"
         ),
         tags$p(
-          "The circos diagram illustrates how different categories of clothing were exchanged at The Loop, 
-           with arcs representing item types and connecting ribbons showing the flow of exchanges between them.",
+          "The circos diagram illustrates exchange patterns between clothing types, 
+           with arcs representing item categories and ribbons showing the flow of exchanges. 
+           This type of visualization is commonly used in genomics to depict data relationships — here adapted for sustainability data.",
           style="font-size:2rem; color:#2C3E50; line-height:1.8; margin-top:10px;"
         )
       ),
       
-      # Column 3 - Visit Timing + Year in Review Table
-      # Column 3 - Visit Timing + Year in Review Table
-tags$div(
-  style="flex:1; background-color:white; border-radius:10px;
-         padding:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1);",
-  
-  tags$h2("Popular Visit Time and Days",
-          style="text-align:center; color:#2C3E50; font-family:Arial; font-size:2rem; margin-bottom:10px;"),
-  
-  # 🔹 Reduce plot area height and spacing
-  tags$div(style="height:600px; width:100%; margin-bottom:5px;", top_slots_interactive),
-  
-  tags$p(
-    "The bubble chart shows when visits to The Loop are most frequent across days of the week and times of day. Larger, lighter bubbles indicate afternoon peak hours with the highest number of visits.",
-    style="font-size:2rem; color:#2C3E50; line-height:1.8; margin-top:5px; margin-bottom:10px;"
-  ),
-  
-  # ---- Year in Review summary table ----
-  tags$div(
-    style="margin-top:10px; text-align:center;",
-    tags$h3("The Loop 2025: Year in Review",
-            style="color:#2C3E50; font-family:'Arial Black',Arial; font-size:2rem; margin-bottom:10px;"),
-    
-    tags$table(
-      style="margin:auto; border-collapse:collapse; font-size:1.8rem; color:#2C3E50;",
-      tags$thead(
-        tags$tr(
-          tags$th("Category", style="border-bottom:3px solid #1E2A5E; padding:6px 20px; text-align:left;"),
-          tags$th("Metric", style="border-bottom:3px solid #1E2A5E; padding:6px 20px; text-align:left;"),
-          tags$th("Value / Insight", style="border-bottom:3px solid #1E2A5E; padding:6px 20px; text-align:left;")
+      # Column 3 - Visit Timing + Summary
+      tags$div(
+        style="flex:1; background-color:white; border-radius:10px;
+               padding:25px; box-shadow:0 4px 10px rgba(0,0,0,0.1);",
+        tags$h2("Popular Visit Times and Days",
+                style="text-align:center; color:#2C3E50; font-family:Arial; font-size:2rem; margin-bottom:10px;"),
+        tags$div(style="height:600px; width:100%; margin-bottom:5px;", top_slots_interactive),
+        tags$p(
+          "The bubble chart shows when visits to The Loop are most frequent across days and times of day. 
+           Larger, lighter bubbles indicate afternoon peaks with the highest traffic.",
+          style="font-size:2rem; color:#2C3E50; line-height:1.8; margin-top:5px; margin-bottom:10px;"
+        ),
+        tags$div(
+          style="margin-top:10px; text-align:center;",
+          tags$h3("The Loop 2025: Year in Review",
+                  style="color:#2C3E50; font-family:'Arial Black',Arial; font-size:2rem; margin-bottom:10px;"),
+          tags$table(
+            style="margin:auto; border-collapse:collapse; font-size:1.8rem; color:#2C3E50;",
+            tags$thead(
+              tags$tr(
+                tags$th("Category", style="border-bottom:3px solid #1E2A5E; padding:6px 20px; text-align:left;"),
+                tags$th("Metric", style="border-bottom:3px solid #1E2A5E; padding:6px 20px; text-align:left;"),
+                tags$th("Value / Insight", style="border-bottom:3px solid #1E2A5E; padding:6px 20px; text-align:left;")
+              )
+            ),
+            tags$tbody(
+              tags$tr(tags$td("Total Visits"), tags$td("Recorded count"), tags$td("877")),
+              tags$tr(tags$td("Average Rating"), tags$td("Mean visitor experience"), tags$td("⭐ 4.8 / 5")),
+              tags$tr(tags$td("Top Visitor Group"), tags$td("Most frequent demographic"), tags$td("Undergraduates (~80%)")),
+              tags$tr(tags$td("Donations"), tags$td("Visits including donations"), tags$td("~30%")),
+              tags$tr(tags$td("Most Exchanged Item"), tags$td("Top clothing type"), tags$td("Tops (490 items)")),
+              tags$tr(tags$td("Total Items Tracked"), tags$td("Sum across all categories"), tags$td("≈1,900 pieces"))
+            )
+          )
         )
-      ),
-      tags$tbody(
-        tags$tr(tags$td("Total Visits"), tags$td("Number of recorded visits"), tags$td("877")),
-        tags$tr(tags$td("Average Experience Rating"), tags$td("Mean of all visitors"), tags$td("⭐ 4.8 / 5")),
-        tags$tr(tags$td("Top Visitor Group"), tags$td("Most common demographic"), tags$td("Undergraduates (≈80%)")),
-        tags$tr(tags$td("Donations"), tags$td("% of visits bringing donations"), tags$td("~30%")),
-        tags$tr(tags$td("Most Exchanged Item Type"), tags$td("Category with most items"), tags$td("Tops (490 items)")),
-        tags$tr(tags$td("Total Items Tracked"), tags$td("Sum across all categories"), tags$td("≈1,900 total pieces exchanged"))
       )
-    )
-  )
-)
-),
+    ),
     
     # ---- FOOTER ----
     tags$div(
@@ -116,4 +126,12 @@ tags$div(
   )
 )
 
+## Output
+
+Running this code produces an interactive HTML poster in your Viewer pane (or browser) featuring:
+- Hover tooltips for interactivity
+- A clean three-column layout
+- Descriptive text and a summary table
+  
+### You can save the poster as an HTML file using:
 htmltools::save_html(poster_layout, "loop_poster_three_grid.html")
