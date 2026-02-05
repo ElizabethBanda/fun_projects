@@ -1,4 +1,5 @@
-### This project creates an interactive poster that visualizes data from The Loop, George Washington University’s free clothing exchange.
+### This project creates an interactive poster that visualizes data from The Loop using genomics related plots.
+
 - Please reach out to access original poster. If download does not format correctly.
   
 The poster combines interactive charts, static plots, and summary tables to explore three key questions:
