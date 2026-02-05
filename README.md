@@ -1,4 +1,5 @@
-# fun_projects
+# code to generate an html poster of three plots
+
 library(plotly)
 library(ggplot2)
 library(htmltools)
