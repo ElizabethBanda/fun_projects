@@ -5,7 +5,7 @@
 The poster combines interactive charts, static plots, and summary tables to explore three key questions:
 Who uses The Loop, when do they visit, and what do they exchange?
 
-Below are the required packages. Make sure the following R packages are installed before running the code.
+Below are the required packages. Make sure the following R packages are installed before running the code.  
 library(plotly)       # For interactive charts  
 library(ggplot2)      # For data visualization  
 library(htmltools)    # For HTML structure and layout  
