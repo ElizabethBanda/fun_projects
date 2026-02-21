@@ -1,4 +1,6 @@
 ### This project creates an interactive poster that visualizes data from The Loop using genomics related plots.
+
+view the poster: https://elizabethbanda.github.io/fun_projects/
   
 The poster combines interactive charts, static plots, and summary tables to explore three key questions:
 Who uses The Loop, when do they visit, and what do they exchange?
