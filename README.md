@@ -17,7 +17,7 @@ The following R script code will assemble the images into a three-column HTML po
 Each column highlights a different dimension of The Loop’s data:
 - Visitor Demographics: A microbiome inspired abundance chart showing visit patterns across campus groups.
 - Clothing Flow: A Circos diagram visualizing clothing exchange patterns between item types.
-- Visit Timing + Summary Table: A bubble chart with heat map color scheme for peak visit hours and a “Year in Review” summary.
+- Visit Timing + Summary Table: A dot plot chart with heat map color scheme for peak visit hours and a “Year in Review” summary. This plot also resembles dotplot enrichment pathway where count, color and dot size represent information.
 
 ## Notes on Design
 - Uses accessible fonts (Arial and Arial Black) and high-contrast color palettes.
