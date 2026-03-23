@@ -1,6 +1,7 @@
 ### This project creates an interactive poster that visualizes data from The Loop using genomics related plots.
 
 view the poster: https://elizabethbanda.github.io/fun_projects/
+
 https://libguides.gwu.edu/love-data-week/data-viz-2026
   
 The poster combines interactive charts, static plots, and summary tables to explore three key questions:
