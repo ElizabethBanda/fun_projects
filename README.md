@@ -2,7 +2,7 @@
 
 view the poster: https://elizabethbanda.github.io/fun_projects/
 
-https://libguides.gwu.edu/love-data-week/data-viz-2026
+Read more about the competition: https://libguides.gwu.edu/love-data-week/data-viz-2026
   
 The poster combines interactive charts, static plots, and summary tables to explore three key questions:
 Who uses The Loop, when do they visit, and what do they exchange?
